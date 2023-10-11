@@ -29,9 +29,11 @@ ENV : add an envelop to avoid clicks
 
 Mod devices installation
 
-• Copy the zwabo-stuttterz.lv2 folder to your Mod:
-
+- Copy the zwabo-stuttterz.lv2 folder to your Mod:
+  
+ ```
 scp -rp <path to zwabo-stuttterz.lv2> root@192.168.51.1:/root/.lv2
+ ```
 
-• Enter password "mod"
-• Reboot Mod
+- Enter password "mod"
+- Reboot Mod
