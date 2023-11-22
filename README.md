@@ -10,7 +10,7 @@ DIV_L  and  DIV_R : Time division 1/4 note, 1/8 note , etc ….but also odd divi
 
 DOUBLE: when engaged, left and right are active, disengaged only DIV_L is active
 
-ZTUTTER :  trig the stutter effect
+ZTUTTER :  record and trig the stutter effect
 
 Dry/Wet: obvious
 
