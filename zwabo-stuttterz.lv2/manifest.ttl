@@ -6,3 +6,4 @@
     lv2:binary <max-gen-plugin_dsp.so> ;
     rdfs:seeAlso <max-gen-plugin_dsp.ttl> .
 
+<https://jeanphilippezwahlen.blogspot.com/> rdfs:seeAlso <modgui.ttl> .

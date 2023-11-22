@@ -182,9 +182,21 @@
 	lv2:portProperty lv2:integer, lv2:toggled, mod:preferMomentaryOnByDefault ;
     ] ;
 
-    rdfs:comment "Generated from Max gen~ and github.com/moddevices/max-gen-plugins" ;
+    rdfs:comment """ 
+Double Stutter effect (L/R) with time division 1/4 note, 1/8 note , etc ….but also odd division 5tuplet…11tuplet which could give interesting polyrythmic effects at slow tempo
 
-    mod:brand "zwabo" ;
+ZTUTTER : record and trig the stutter effect
+
+RANDOM: when engaged, random tempo/division on each trig
+
+RANGE : random range
+
+TAIL : add a tail when stopping stutter (artifacts with random…)
+
+ENV : add an envelop to avoid clicks
+""" ;
+
+    mod:brand "Zwabo" ;
     mod:label "STUTTTERz" ;
 
     doap:name "STUTTTERz" ;
