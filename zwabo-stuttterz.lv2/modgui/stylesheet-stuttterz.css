@@ -17,13 +17,13 @@
     right:30px;
     text-align:center;
     text-transform:uppercase;
-    top:290px;
+    top:270px;
 }
 
 .mod-pedal-lata{{{cns}}} .mod-plugin-brand h1 {
     color:#111;
     font-family:"Nexa";
-    font-size:32px;
+    font-size:22px;
 }
 
 /* = PLUGIN'S NAME
@@ -39,7 +39,7 @@
 
 .mod-pedal-lata{{{cns}}} .mod-plugin-name h1 {
     font-family:"Questrial";
-    font-size:24px;
+    font-size:0px;
     line-height:1;
 }
 
