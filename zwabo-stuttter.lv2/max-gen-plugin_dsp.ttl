@@ -13,10 +13,10 @@
 @prefix units: <http://lv2plug.in/ns/extensions/units#> .
 @prefix time: <http://lv2plug.in/ns/ext/time#> .
 
-<https://jeanphilippezwahlen.blogspot.com/>
+<https://github.com/zwaba/STUTTER>
     a lv2:DelayPlugin, lv2:Plugin, doap:Project ;
 
-    lv2:extensionData <http://lv2plug.in/ns/ext/state#interface> ;
+    lv2:extensionData opts:interface ;
 
     lv2:optionalFeature <http://lv2plug.in/ns/lv2core#hardRTCapable> ,
                         <http://lv2plug.in/ns/ext/buf-size#boundedBlockLength> ;
@@ -33,12 +33,16 @@
         lv2:index 0 ;
         lv2:symbol "lv2_audio_in_1" ;
         lv2:name "Audio Input 1" ;
+        pg:group <https://github.com/zwaba/STUTTER#portGroup_dpf_stereo> ;
+        lv2:designation pg:left ;
     ] ,
     [
         a lv2:InputPort, lv2:AudioPort ;
         lv2:index 1 ;
         lv2:symbol "lv2_audio_in_2" ;
         lv2:name "Audio Input 2" ;
+        pg:group <https://github.com/zwaba/STUTTER#portGroup_dpf_stereo> ;
+        lv2:designation pg:right ;
     ] ;
 
     lv2:port [
@@ -46,21 +50,26 @@
         lv2:index 2 ;
         lv2:symbol "lv2_audio_out_1" ;
         lv2:name "Audio Output 1" ;
+        pg:group <https://github.com/zwaba/STUTTER#portGroup_dpf_stereo> ;
+        lv2:designation pg:left ;
     ] ,
     [
         a lv2:OutputPort, lv2:AudioPort ;
         lv2:index 3 ;
         lv2:symbol "lv2_audio_out_2" ;
         lv2:name "Audio Output 2" ;
+        pg:group <https://github.com/zwaba/STUTTER#portGroup_dpf_stereo> ;
+        lv2:designation pg:right ;
     ] ;
+
     lv2:port [
         a lv2:InputPort, lv2:ControlPort ;
         lv2:index 4 ;
         lv2:name "BPM" ;
         lv2:symbol "BPM" ;
-        lv2:default 120.000000 ;
-        lv2:minimum 20.000000 ;
-        lv2:maximum 280.000000 ;
+        lv2:default 120 ;
+        lv2:minimum 20 ;
+        lv2:maximum 240 ;
 	units:unit units:bpm ;
         lv2:portProperty  mod:tempoRelatedDynamicScalePoints;
     ] ,
@@ -69,10 +78,10 @@
         lv2:index 5 ;
         lv2:name "DOUBLE" ;
         lv2:symbol "DOUBLE" ;
-        lv2:default 1.000000 ;
-        lv2:minimum 0.000000 ;
-        lv2:maximum 1.000000 ;
-        lv2:portProperty lv2:toggled;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 1 ;
+	lv2:portProperty lv2:toggled;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -100,7 +109,7 @@
         lv2:index 7 ;
         lv2:name "Div_R" ;
         lv2:symbol "Div_R" ;
-        lv2:default 3.0 ;
+	lv2:default 3.0 ;
         lv2:minimum 1.0 ;
         lv2:maximum 10.0 ;
         lv2:portProperty lv2:integer;
@@ -128,16 +137,34 @@
     [
         a lv2:InputPort, lv2:ControlPort ;
         lv2:index 9 ;
-        lv2:name "RANDOM" ;
-        lv2:symbol "RANDOM" ;
-        lv2:default 0.000000 ;
-        lv2:minimum 0.000000 ;
-        lv2:maximum 1.000000 ;
-        lv2:portProperty lv2:toggled;
+        lv2:name "Filter_R" ;
+        lv2:symbol "Filter_R" ;
+        lv2:default 0 ;
+        lv2:minimum -100 ;
+        lv2:maximum 100 ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:ControlPort ;
+        lv2:index 10 ;
+        lv2:name "LEFT" ;
+        lv2:symbol "LEFT" ;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 1 ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
-        lv2:index 10 ;
+        lv2:index 11 ;
+        lv2:name "RANDOM" ;
+        lv2:symbol "RANDOM" ;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 1 ;
+	lv2:portProperty lv2:toggled;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 12 ;
         lv2:name "RANGE" ;
         lv2:symbol "RANGE" ;
         lv2:default 5 ;
@@ -145,8 +172,17 @@
         lv2:maximum 10 ;
     ] ,
     [
+        a lv2:OutputPort, lv2:ControlPort ;
+        lv2:index 13 ;
+        lv2:name "RIGHT" ;
+        lv2:symbol "RIGHT" ;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 1 ;
+    ] ,
+    [
         a lv2:InputPort, lv2:ControlPort ;
-        lv2:index 11 ;
+        lv2:index 14 ;
         lv2:name "Tail" ;
         lv2:symbol "Tail" ;
         lv2:default 0 ;
@@ -155,16 +191,7 @@
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
-        lv2:index 12 ;
-        lv2:name "damp" ;
-        lv2:symbol "damp" ;
-        lv2:default 0.990000009537 ;
-        lv2:minimum 0.449999988079 ;
-        lv2:maximum 1 ;
-    ] ,
-    [
-        a lv2:InputPort, lv2:ControlPort ;
-        lv2:index 13 ;
+        lv2:index 15 ;
         lv2:name "dry_wet" ;
         lv2:symbol "dry_wet" ;
         lv2:default 0.5 ;
@@ -173,7 +200,26 @@
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
-        lv2:index 14 ;
+        lv2:index 16 ;
+        lv2:name "reverse" ;
+        lv2:symbol "reverse" ;
+        lv2:default 0 ;
+        lv2:minimum 0 ;
+        lv2:maximum 1 ;
+	lv2:portProperty lv2:toggled;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 17 ;
+        lv2:name "speed" ;
+        lv2:symbol "speed" ;
+        lv2:default 1 ;
+        lv2:minimum 0.00999999977648 ;
+        lv2:maximum 23 ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 18 ;
         lv2:name "ztutter" ;
         lv2:symbol "ztutter" ;
         lv2:default 0 ;
@@ -182,24 +228,19 @@
 	lv2:portProperty lv2:integer, lv2:toggled, mod:preferMomentaryOnByDefault ;
     ] ;
 
-    rdfs:comment """ 
-Double Stutter effect (L/R) with time division 1/4 note, 1/8 note , etc ….but also odd division 5tuplet…11tuplet which could give interesting polyrythmic effects at slow tempo
+	rdfs:comment """ 
+Double Stutter effect (L/R) with time division 1/4 note, 1/8 note , etc...
+but also odd division 5tuplet, 7tuplet, 9tuplet, 11tuplet 
+which could give interesting polyrythmic effects at slow tempo.
+An ambiant/harsh tool in one plugin.
 
-ZTUTTER : record and trig the stutter effect
-
-RANDOM: when engaged, random tempo/division on each trig
-
-RANGE : random range
-
-TAIL : add a tail when stopping stutter (artifacts with random…)
-
-ENV : add an envelop to avoid clicks
 """ ;
 
-    mod:brand "Zwabo" ;
-    mod:label "STUTTTERz" ;
 
-    doap:name "STUTTTERz" ;
+    mod:brand "zwabo" ;
+    mod:label "STUTTTER" ;
+
+    doap:name "STUTTTER" ;
     doap:license <http://spdx.org/licenses/ISC.html> ;
 
     doap:maintainer [
@@ -210,3 +251,7 @@ ENV : add an envelop to avoid clicks
     lv2:microVersion 0 ;
     lv2:minorVersion 0 .
 
+<https://github.com/zwaba/STUTTER#portGroup_dpf_stereo>
+    a pg:Group , pg:StereoGroup ;
+    lv2:name "Stereo" ;
+    lv2:symbol "dpf_stereo" .
