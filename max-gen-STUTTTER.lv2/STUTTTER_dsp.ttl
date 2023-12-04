@@ -13,7 +13,7 @@
 @prefix units: <http://lv2plug.in/ns/extensions/units#> .
 @prefix time: <http://lv2plug.in/ns/ext/time#> .
 
-<https://github.com/zwaba/STUTTER>
+<urn:maxgen:STUTTTER>
     a lv2:DelayPlugin, lv2:Plugin, doap:Project ;
 
     lv2:extensionData opts:interface ;
@@ -33,16 +33,12 @@
         lv2:index 0 ;
         lv2:symbol "lv2_audio_in_1" ;
         lv2:name "Audio Input 1" ;
-        pg:group <https://github.com/zwaba/STUTTER#portGroup_dpf_stereo> ;
-        lv2:designation pg:left ;
     ] ,
     [
         a lv2:InputPort, lv2:AudioPort ;
         lv2:index 1 ;
         lv2:symbol "lv2_audio_in_2" ;
         lv2:name "Audio Input 2" ;
-        pg:group <https://github.com/zwaba/STUTTER#portGroup_dpf_stereo> ;
-        lv2:designation pg:right ;
     ] ;
 
     lv2:port [
@@ -50,16 +46,12 @@
         lv2:index 2 ;
         lv2:symbol "lv2_audio_out_1" ;
         lv2:name "Audio Output 1" ;
-        pg:group <https://github.com/zwaba/STUTTER#portGroup_dpf_stereo> ;
-        lv2:designation pg:left ;
     ] ,
     [
         a lv2:OutputPort, lv2:AudioPort ;
         lv2:index 3 ;
         lv2:symbol "lv2_audio_out_2" ;
         lv2:name "Audio Output 2" ;
-        pg:group <https://github.com/zwaba/STUTTER#portGroup_dpf_stereo> ;
-        lv2:designation pg:right ;
     ] ;
 
     lv2:port [
@@ -69,9 +61,8 @@
         lv2:symbol "BPM" ;
         lv2:default 120 ;
         lv2:minimum 20 ;
-        lv2:maximum 240 ;
-	units:unit units:bpm ;
-        lv2:portProperty  mod:tempoRelatedDynamicScalePoints;
+        lv2:maximum 280 ;
+	lv2:portProperty  mod:tempoRelatedDynamicScalePoints;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -88,10 +79,10 @@
         lv2:index 6 ;
         lv2:name "Div_L" ;
         lv2:symbol "Div_L" ;
-	lv2:default 1.0 ;
-        lv2:minimum 1.0 ;
-        lv2:maximum 10.0 ;
-        lv2:portProperty lv2:integer;
+        lv2:default 1 ;
+        lv2:minimum 1 ;
+        lv2:maximum 10 ;
+	lv2:portProperty lv2:integer;
         lv2:portProperty lv2:enumeration ;    
         lv2:scalePoint [rdfs:label "1/4note"; rdf:value 1];
         lv2:scalePoint [rdfs:label "Dotted1/8note"; rdf:value 2];
@@ -103,16 +94,17 @@
         lv2:scalePoint [rdfs:label "7tuplet"; rdf:value 8];
         lv2:scalePoint [rdfs:label "9tuplet"; rdf:value 9];
         lv2:scalePoint [rdfs:label "11tuplet"; rdf:value 10];
+
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
         lv2:index 7 ;
         lv2:name "Div_R" ;
         lv2:symbol "Div_R" ;
-	lv2:default 3.0 ;
-        lv2:minimum 1.0 ;
-        lv2:maximum 10.0 ;
-        lv2:portProperty lv2:integer;
+        lv2:default 3 ;
+        lv2:minimum 1 ;
+        lv2:maximum 10 ;
+	lv2:portProperty lv2:integer;
         lv2:portProperty lv2:enumeration ;    
         lv2:scalePoint [rdfs:label "1/4note"; rdf:value 1];
         lv2:scalePoint [rdfs:label "Dotted1/8note"; rdf:value 2];
@@ -124,15 +116,16 @@
         lv2:scalePoint [rdfs:label "7tuplet"; rdf:value 8];
         lv2:scalePoint [rdfs:label "9tuplet"; rdf:value 9];
         lv2:scalePoint [rdfs:label "11tuplet"; rdf:value 10];
+
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
         lv2:index 8 ;
         lv2:name "ENV_ms" ;
         lv2:symbol "ENV_ms" ;
-        lv2:default 20 ;
+        lv2:default 1 ;
         lv2:minimum 0 ;
-        lv2:maximum 3000 ;
+        lv2:maximum 500 ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -214,8 +207,8 @@
         lv2:name "speed" ;
         lv2:symbol "speed" ;
         lv2:default 1 ;
-        lv2:minimum 0.00999999977648 ;
-        lv2:maximum 23 ;
+        lv2:minimum 0.009 ;
+        lv2:maximum 2 ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -228,14 +221,13 @@
 	lv2:portProperty lv2:integer, lv2:toggled, mod:preferMomentaryOnByDefault ;
     ] ;
 
-	rdfs:comment """ 
+rdfs:comment """ 
 Double Stutter effect (L/R) with time division 1/4 note, 1/8 note , etc...
 but also odd division 5tuplet, 7tuplet, 9tuplet, 11tuplet 
 which could give interesting polyrythmic effects at slow tempo.
 An ambiant/harsh tool in one plugin.
 
 """ ;
-
 
     mod:brand "zwabo" ;
     mod:label "STUTTTER" ;
@@ -245,13 +237,8 @@ An ambiant/harsh tool in one plugin.
 
     doap:maintainer [
         foaf:name "zwabo" ;
-        foaf:homepage <https://github.com/moddevices/max-gen-plugins> ;
+        foaf:homepage <https://github.com/moddevices/max-gen-skeleton> ;
     ] ;
 
     lv2:microVersion 0 ;
     lv2:minorVersion 0 .
-
-<https://github.com/zwaba/STUTTER#portGroup_dpf_stereo>
-    a pg:Group , pg:StereoGroup ;
-    lv2:name "Stereo" ;
-    lv2:symbol "dpf_stereo" .
