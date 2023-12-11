@@ -1,4 +1,7 @@
 @prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <urn:maxgen:STUTTTER>
@@ -7,3 +10,31 @@
     rdfs:seeAlso <STUTTTER_dsp.ttl> .
 
 <urn:maxgen:STUTTTER> rdfs:seeAlso <modgui.ttl> .
+
+
+
+<_4_3_92_bpm.ttl>
+	lv2:appliesTo <urn:maxgen:STUTTTER> ;
+	a pset:Preset ;
+	rdfs:seeAlso <_4_3_92_bpm.ttl> .
+
+
+<_7_11_20_bpm.ttl>
+	lv2:appliesTo <urn:maxgen:STUTTTER> ;
+	a pset:Preset ;
+	rdfs:seeAlso <_7_11_20_bpm.ttl> .
+
+
+<RANDOM_DOUBLE.ttl>
+	lv2:appliesTo <urn:maxgen:STUTTTER> ;
+	a pset:Preset ;
+	rdfs:seeAlso <RANDOM_DOUBLE.ttl> .
+
+
+<RANDOM.ttl>
+	lv2:appliesTo <urn:maxgen:STUTTTER> ;
+	a pset:Preset ;
+	rdfs:seeAlso <RANDOM.ttl> .
+
+
+
