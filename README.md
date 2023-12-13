@@ -32,6 +32,7 @@ ENV : add an envelop to avoid clicks and/or tweak the loop
 • Copy the zwabo-cozmic.lv2 folder to your Mod:
 
   scp -rp <path to stuttter.lv2> root@192.168.51.1:/root/.lv2
+  
 • Enter password "mod"
 
 • Reboot Mod Dwarf
