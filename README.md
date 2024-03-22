@@ -29,7 +29,7 @@ ENV : add an envelop to avoid clicks and/or tweak the loop
 
 # Mod Dwarf installation:
 
-• Copy the zwabo-cozmic.lv2 folder to your Mod:
+• Copy the max-gen-STUTTTER.lv2 folder to your Mod:
 ```
   scp -rp <path to max-gen-STUTTTER.lv2> root@192.168.51.1:/root/.lv2
   ```
