@@ -25,6 +25,8 @@ TAIL : add a tail when stopping stutter (artifacts with random…)
 
 ENV : add an envelop to avoid clicks and/or tweak the loop
 
+SPEED: change speed/pitch (i.e. 1= normal, 2= double)
+
 
 
 # Mod Dwarf installation:
